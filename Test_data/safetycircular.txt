@@ -1,0 +1,50 @@
+
+
+
+ 
+
+## 1. Safety Circular (Formal Directive)
+ 
+
+This is an official communication that is formal, structured, and bilingual. It's good for training the model to identify document types, key directives, and responsible parties.
+
+**KOCHI METRO RAIL LIMITED**
+**കൊച്ചി മെട്രോ റെയിൽ ലിമിറ്റഡ്**
+(A Government of Kerala & Govt. of India Joint Venture)
+
+**SAFETY DEPARTMENT | സുരക്ഷാ വിഭാഗം**
+
+**CIRCULAR | സർക്കുലർ**
+--------------------------------------------------
+**Circular No. | സർക്കുലർ നമ്പർ:** KMRL/SAFE/2025/CIR/112
+**Date | തീയതി:** 12 September 2025
+
+**Subject | വിഷയം:** Mandatory Protocol for Platform Overcrowding during Peak Hours
+(തിരക്കേറിയ സമയങ്ങളിൽ പ്ലാറ്റ്‌ഫോമിലെ അമിതമായ തിരക്ക് നിയന്ത്രിക്കുന്നതിനുള്ള നിർബന്ധിത പ്രോട്ടോക്കോൾ)
+
+**Distribution | വിതരണം:** All Station Controllers, Operations Staff, Security Personnel
+
+This circular is issued to enforce a new Standard Operating Procedure (SOP) for managing passenger overcrowding on all station platforms, effective September 20th, 2025.
+
+**Key Directives | പ്രധാന നിർദ്ദേശങ്ങൾ:**
+
+1. **Code Yellow Alert:** Station Controllers must declare a "Code Yellow" when passenger density exceeds 4 persons per square meter.
+(ഒരു ചതുരശ്ര മീറ്ററിൽ 4-ൽ കൂടുതൽ ആളുകളായാൽ സ്റ്റേഷൻ കൺട്രോളർമാർ "കോഡ് യെല്ലോ" പ്രഖ്യാപിക്കണം.)
+
+2. **Access Control:** Upon a Code Yellow alert, security personnel must temporarily restrict entry at designated AFC gates to regulate inflow.
+(കോഡ് യെല്ലോ പ്രഖ്യാപിച്ചാൽ, സുരക്ഷാ ഉദ്യോഗസ്ഥർ AFC ഗേറ്റുകളിലെ പ്രവേശനം താൽക്കാലികമായി നിയന്ത്രിക്കണം.)
+
+3. **Public Announcements:** Pre-recorded announcements regarding the delay must be played continuously in both English and Malayalam.
+(ഉണ്ടാകുന്ന കാലതാമസത്തെക്കുറിച്ചുള്ള അറിയിപ്പുകൾ ഇംഗ്ലീഷിലും മലയാളത്തിലും തുടർച്ചയായി നൽകണം.)
+
+All staff must complete the mandatory training module for SOP-112 on the employee portal by September 19th, 2025. Non-compliance will be treated seriously.
+
+---
+**Anil Kumar V.**
+Chief Safety Officer (ചീഫ് സേഫ്റ്റി ഓഫീസർ)
+Kochi Metro Rail Limited
+
+
+ 
+
+
