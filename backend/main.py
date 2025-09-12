@@ -20,6 +20,11 @@ from PIL import Image
 from deep_translator import GoogleTranslator
 import langdetect
 import time
+import PyPDF2
+
+# Import LLM libraries for summarization
+from transformers import pipeline
+import torch
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -91,14 +96,33 @@ def extract_and_translate(file_path: str) -> Dict:
             print(mal_text if mal_text else "[No text found]")
             
         elif file_extension == '.pdf':
-            # For PDF, we'll treat it as image for now (your approach adapted)
+            # Enhanced PDF processing with PyPDF2
+            mal_text = ""
             try:
-                img = Image.open(file_path)
-                mal_text = pytesseract.image_to_string(img, lang="mal")
-            except:
-                # If PDF can't be opened as image, return empty
-                mal_text = ""
-                print(f"⚠️ Could not process PDF {file_path} as image")
+                # First, try to extract text directly from PDF
+                with open(file_path, 'rb') as pdf_file:
+                    pdf_reader = PyPDF2.PdfReader(pdf_file)
+                    for page in pdf_reader.pages:
+                        page_text = page.extract_text()
+                        if page_text.strip():
+                            mal_text += page_text + "\n"
+                
+                print(f"\n🔹 Extracted text from PDF {file_path}:")
+                print(mal_text if mal_text else "[No text found in PDF]")
+                
+                # If no text found or very little text, it might be a scanned PDF
+                if not mal_text.strip() or len(mal_text.strip()) < 10:
+                    print("📄 PDF appears to be scanned, trying OCR...")
+                    try:
+                        # Try to open as image for OCR (some PDFs can be opened as images)
+                        img = Image.open(file_path)
+                        mal_text = pytesseract.image_to_string(img, lang="mal")
+                        print(f"🔍 OCR result: {mal_text[:100]}...")
+                    except:
+                        mal_text = "Unable to extract text from this PDF. Please try converting to an image format."
+            except Exception as e:
+                print(f"❌ PDF processing error: {str(e)}")
+                mal_text = f"Error processing PDF: {str(e)}"
                 
         else:
             # Text files
@@ -149,6 +173,95 @@ def extract_and_translate(file_path: str) -> Dict:
             "translated_text": f"Processing error: {str(e)}",
             "processing_time": 0,
             "confidence": 0.0,
+            "error": str(e)
+        }
+
+# Initialize summarization pipeline
+summarizer = None
+
+def initialize_summarizer():
+    """Initialize the summarization pipeline"""
+    global summarizer
+    try:
+        if summarizer is None:
+            logger.info("🤖 Initializing AI summarizer...")
+            # Using a lightweight summarization model
+            summarizer = pipeline(
+                "summarization", 
+                model="facebook/bart-large-cnn",
+                device=0 if torch.cuda.is_available() else -1
+            )
+            logger.info("✅ AI summarizer initialized")
+    except Exception as e:
+        logger.warning(f"⚠️ Summarizer initialization failed: {e}")
+        # Fallback to a simpler approach
+        summarizer = "fallback"
+
+def generate_summary(text: str, max_length: int = 150) -> Dict:
+    """
+    Generate AI-powered summary from extracted text
+    """
+    try:
+        if not text or len(text.strip()) < 50:
+            return {
+                "summary": "Text too short to summarize effectively.",
+                "key_points": [],
+                "summary_type": "insufficient_content"
+            }
+        
+        # Initialize summarizer if not already done
+        if summarizer is None:
+            initialize_summarizer()
+        
+        # Generate summary
+        if summarizer == "fallback":
+            # Simple extractive summarization fallback
+            sentences = text.split('. ')
+            if len(sentences) <= 3:
+                summary_text = text[:max_length*2] + "..."
+            else:
+                # Take first and important middle sentences
+                summary_text = '. '.join(sentences[:2] + sentences[len(sentences)//2:len(sentences)//2+1])
+                if len(summary_text) > max_length*2:
+                    summary_text = summary_text[:max_length*2] + "..."
+            
+            key_points = [s.strip() for s in sentences[:5] if len(s.strip()) > 20]
+            
+        else:
+            # AI-powered summarization
+            # Chunk text if too long
+            max_input_length = 1000
+            if len(text) > max_input_length:
+                text_chunk = text[:max_input_length]
+            else:
+                text_chunk = text
+            
+            summary_result = summarizer(
+                text_chunk, 
+                max_length=max_length, 
+                min_length=30, 
+                do_sample=False
+            )
+            summary_text = summary_result[0]['summary_text']
+            
+            # Extract key points (simple sentence splitting)
+            sentences = text.split('. ')
+            key_points = [s.strip() + '.' for s in sentences[:5] if len(s.strip()) > 20]
+        
+        return {
+            "summary": summary_text,
+            "key_points": key_points,
+            "summary_type": "ai_generated" if summarizer != "fallback" else "extractive",
+            "original_length": len(text),
+            "summary_length": len(summary_text)
+        }
+        
+    except Exception as e:
+        logger.error(f"❌ Summarization error: {str(e)}")
+        return {
+            "summary": f"Summary generation failed: {str(e)}",
+            "key_points": [],
+            "summary_type": "error",
             "error": str(e)
         }
 
@@ -227,6 +340,15 @@ async def process_document_async(task_id: str, file_path: str, filename: str):
         # Use your proven extract_and_translate method
         result = extract_and_translate(file_path)
         
+        # Generate AI summary if text extraction was successful
+        summary_result = {}
+        if result.get("translated_text") and len(result.get("translated_text", "").strip()) > 50:
+            processing_results[task_id].update({
+                "progress": 80,
+                "message": "Generating AI summary..."
+            })
+            summary_result = generate_summary(result.get("translated_text", ""))
+        
         # Update final result
         processing_results[task_id].update({
             "status": "completed",
@@ -236,8 +358,11 @@ async def process_document_async(task_id: str, file_path: str, filename: str):
             "language": result.get("language", "unknown"),
             "confidence": result.get("confidence", 0.0),
             "processing_time": result.get("processing_time", 0),
+            "summary": summary_result.get("summary", ""),
+            "key_points": summary_result.get("key_points", []),
+            "summary_type": summary_result.get("summary_type", "none"),
             "completed_at": datetime.now().isoformat(),
-            "message": "Malayalam OCR processing completed successfully"
+            "message": "Malayalam OCR processing and AI summarization completed successfully"
         })
         
         if "error" in result:
@@ -289,6 +414,46 @@ async def delete_result(task_id: str):
     del processing_results[task_id]
     
     return JSONResponse({"message": "Result deleted successfully"})
+
+@app.post("/api/summarize/{task_id}")
+async def generate_document_summary(task_id: str):
+    """
+    Generate or regenerate summary for an existing processed document
+    """
+    if task_id not in processing_results:
+        raise HTTPException(status_code=404, detail="Task not found")
+    
+    result = processing_results[task_id]
+    
+    if result["status"] != "completed":
+        raise HTTPException(status_code=400, detail="Document processing not completed yet")
+    
+    translated_text = result.get("translated_text", "")
+    if not translated_text or len(translated_text.strip()) < 50:
+        raise HTTPException(status_code=400, detail="Text too short to summarize")
+    
+    try:
+        # Generate new summary
+        summary_result = generate_summary(translated_text)
+        
+        # Update the result with new summary
+        processing_results[task_id].update({
+            "summary": summary_result.get("summary", ""),
+            "key_points": summary_result.get("key_points", []),
+            "summary_type": summary_result.get("summary_type", "none"),
+            "summary_generated_at": datetime.now().isoformat()
+        })
+        
+        return JSONResponse({
+            "message": "Summary generated successfully",
+            "summary": summary_result.get("summary", ""),
+            "key_points": summary_result.get("key_points", []),
+            "summary_type": summary_result.get("summary_type", "none")
+        })
+        
+    except Exception as e:
+        logger.error(f"❌ Summary generation error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Summary generation failed: {str(e)}")
 
 @app.get("/api/health")
 async def health_check():
