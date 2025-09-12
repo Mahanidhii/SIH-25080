@@ -1,0 +1,40 @@
+
+---
+
+**Date:** 13 September 2025
+**Shift:** A (06:00 - 14:00)
+**From:** Rajesh Kumar (Station Controller, Edapally)
+**To:** Anjali Nair (Station Controller, Edapally)
+
+**Shift Summary (English):**
+The morning shift was stable with no major incidents affecting train operations. Passenger flow was moderate, peaking at around 09:30 AM. All systems are currently green and functioning within normal parameters.
+
+**Key Events (English):**
+1. **08:45 AM:** Ticketing Vending Machine (TVM-EDP-02) reported a card reader malfunction. A maintenance ticket (#M7921) has been logged in the Maximo system. The machine is currently out of service.
+2. **11:20 AM:** A fire alarm test was successfully conducted on Platform 2. All systems responded as expected.
+3. **13:30 PM:** Received a general safety reminder circular (KMRL/SAFE/2025/CIR/114) regarding platform safety during monsoon season.
+
+**Pending Tasks for Next Shift (English):**
+- Follow up with the maintenance team on the status of TVM-EDP-02.
+- Ensure security staff are vigilant about water logging near the station entrance due to the heavy rain forecast.
+
+---
+**SECTION 2: MALAYALAM | വിഭാഗം 2: മലയാളം**
+---
+
+**തീയതി:** 13 സെപ്റ്റംബർ 2025
+**ഷിഫ്റ്റ്:** എ (06:00 - 14:00)
+**കൈമാറുന്നത്:** രാജേഷ് കുമാർ (സ്റ്റേഷൻ കൺട്രോളർ, ഇടപ്പള്ളി)
+**സ്വീകരിക്കുന്നത്:** അഞ്ജലി നായർ (സ്റ്റേഷൻ കൺട്രോളർ, ഇടപ്പള്ളി)
+
+**ഷിഫ്റ്റ് സംഗ്രഹം (മലയാളം):**
+രാവിലെ ഷിഫ്റ്റ് സുസ്ഥിരമായിരുന്നു, ട്രെയിൻ പ്രവർത്തനങ്ങളെ ബാധിക്കുന്ന പ്രധാന സംഭവങ്ങളൊന്നും ഉണ്ടായില്ല. യാത്രക്കാരുടെ തിരക്ക് മിതമായിരുന്നു, രാവിലെ 9:30 ഓടെയാണ് ഏറ്റവും കൂടുതൽ തിരക്ക് അനുഭവപ്പെട്ടത്. എല്ലാ സംവിധാനങ്ങളും നിലവിൽ സാധാരണ നിലയിൽ പ്രവർത്തിക്കുന്നു.
+
+**പ്രധാന സംഭവങ്ങൾ (മലയാളം):**
+1. **രാവിലെ 8:45:** ടിക്കറ്റിംഗ് വെൻഡിംഗ് മെഷീനിൽ (TVM-EDP-02) കാർഡ് റീഡർ തകരാറിലായതായി റിപ്പോർട്ട് ചെയ്തു. മാക്സിമോ സിസ്റ്റത്തിൽ മെയിന്റനൻസ് ടിക്കറ്റ് (#M7921) രജിസ്റ്റർ ചെയ്തിട്ടുണ്ട്. മെഷീൻ നിലവിൽ പ്രവർത്തനരഹിതമാണ്.
+2. **രാവിലെ 11:20:** പ്ലാറ്റ്ഫോം 2-ൽ ഫയർ അലാറം പരിശോധന വിജയകരമായി നടത്തി. എല്ലാ സംവിധാനങ്ങളും പ്രതീക്ഷിച്ച പോലെ പ്രതികരിച്ചു.
+3. **ഉച്ചയ്ക്ക് 1:30:** മൺസൂൺ കാലത്തെ പ്ലാറ്റ്ഫോം സുരക്ഷ സംബന്ധിച്ച ഒരു പൊതു സുരക്ഷാ സർക്കുലർ (KMRL/SAFE/2025/CIR/114) ലഭിച്ചു.
+
+**അടുത്ത ഷിഫ്റ്റിനുള്ള ജോലികൾ (മലയാളം):**
+- TVM-EDP-02-ന്റെ തകരാർ പരിഹരിക്കുന്നത് സംബന്ധിച്ച് മെയിന്റനൻസ് ടീമുമായി ബന്ധപ്പെടുക.
+- കനത്ത മഴ പ്രവചിക്കുന്നതിനാൽ സ്റ്റേഷൻ പ്രവേശന കവാടത്തിനടുത്തുള്ള വെള്ളക്കെട്ടിൽ സുരക്ഷാ ജീവനക്കാർ ജാഗ്രത പാലിക്കുന്നുണ്ടെന്ന് ഉറപ്പാക്കുക.
