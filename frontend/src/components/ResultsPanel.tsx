@@ -150,11 +150,9 @@ const ResultsPanel: React.FC<ResultsPanelProps> = ({ results, onRefresh, onDelet
                 {result.original_text && (
                   <div>
                     <h4 className="font-medium text-gray-700 mb-2">Original Text:</h4>
-                    <div className="bg-gray-50 rounded-md p-3 max-h-32 overflow-y-auto">
+                    <div className="bg-gray-50 rounded-md p-3 max-h-64 overflow-y-auto">
                       <p className="text-sm text-gray-800 malayalam-text whitespace-pre-wrap">
-                        {result.original_text.length > 200 
-                          ? result.original_text.substring(0, 200) + '...' 
-                          : result.original_text}
+                        {result.original_text}
                       </p>
                     </div>
                   </div>
@@ -164,11 +162,9 @@ const ResultsPanel: React.FC<ResultsPanelProps> = ({ results, onRefresh, onDelet
                 {result.translated_text && (
                   <div>
                     <h4 className="font-medium text-gray-700 mb-2">English Translation:</h4>
-                    <div className="bg-blue-50 rounded-md p-3 max-h-32 overflow-y-auto">
+                    <div className="bg-blue-50 rounded-md p-3 max-h-64 overflow-y-auto">
                       <p className="text-sm text-gray-800 whitespace-pre-wrap">
-                        {result.translated_text.length > 200 
-                          ? result.translated_text.substring(0, 200) + '...' 
-                          : result.translated_text}
+                        {result.translated_text}
                       </p>
                     </div>
                   </div>

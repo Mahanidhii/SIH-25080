@@ -3,6 +3,7 @@ import './App.css';
 import FileUpload from './components/FileUpload';
 import ResultsPanel from './components/ResultsPanel';
 import Dashboard from './components/Dashboard';
+import Summarizer from './components/Summarizer';
 import Header from './components/Header';
 import { ProcessingResult, DashboardData } from './types';
 import { getResults, getDashboard } from './services/api';
@@ -10,7 +11,7 @@ import { getResults, getDashboard } from './services/api';
 function App() {
   const [results, setResults] = useState<ProcessingResult[]>([]);
   const [dashboard, setDashboard] = useState<DashboardData | null>(null);
-  const [activeTab, setActiveTab] = useState<'upload' | 'results' | 'dashboard'>('upload');
+  const [activeTab, setActiveTab] = useState<'upload' | 'results' | 'dashboard' | 'summarizer'>('upload');
   const [loading, setLoading] = useState(false);
 
   // Fetch results and dashboard data
@@ -93,6 +94,16 @@ function App() {
             >
               📊 Dashboard
             </button>
+            <button
+              onClick={() => setActiveTab('summarizer')}
+              className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+                activeTab === 'summarizer'
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              🤖 AI Summarizer
+            </button>
           </div>
         </div>
       </div>
@@ -152,8 +163,10 @@ function App() {
                         </div>
                       )}
                       {result.translated_text && (
-                        <p className="text-gray-600 text-sm mt-2 truncate">
-                          {result.translated_text.substring(0, 100)}...
+                        <p className="text-gray-600 text-sm mt-2">
+                          {result.translated_text.length > 150 
+                            ? result.translated_text.substring(0, 150) + '...'
+                            : result.translated_text}
                         </p>
                       )}
                     </div>
@@ -174,6 +187,13 @@ function App() {
 
         {activeTab === 'dashboard' && !loading && dashboard && (
           <Dashboard data={dashboard} onRefresh={fetchData} />
+        )}
+
+        {activeTab === 'summarizer' && !loading && (
+          <Summarizer 
+            results={results} 
+            onRefresh={fetchData}
+          />
         )}
       </main>
 

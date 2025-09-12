@@ -12,6 +12,11 @@ export interface ProcessingResult {
   confidence?: number;
   processing_time?: number;
   error?: string;
+  // AI Summarization fields
+  summary?: string;
+  key_points?: string[];
+  summary_type?: 'ai_generated' | 'extractive' | 'error' | 'none';
+  summary_generated_at?: string;
 }
 
 export interface DashboardData {
