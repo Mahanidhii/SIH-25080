@@ -297,6 +297,16 @@ test_*.jpeg
 # Temporary Malayalam documents
 malayalam_*.txt
 malayalam_*.pdf
+mallu_*.txt
+mallu_*.pdf
+mallu_*.docx
+
+# Screenshots and documentation
+Screenshot*.pdf
+Screenshot*.png
+
+# Additional test files
+valthukal.pdf
 
 # Configuration files with sensitive data
 config.json
@@ -383,7 +393,10 @@ frontend/bundle-analyzer-report.html
 # === DEPLOYMENT ===
 # Docker
 Dockerfile.prod
+Dockerfile.backend
+Dockerfile.frontend
 docker-compose.prod.yml
+docker-compose.yml
 .dockerignore
 
 # Kubernetes
