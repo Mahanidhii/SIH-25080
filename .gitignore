@@ -429,9 +429,9 @@ frontend/.pnp.*
 package-lock.json
 frontend/package-lock.json
 
-# Don't ignore package.json - we want to commit this!
-!package.json
-!frontend/package.json
+# Ignore package.json files (they should be managed separately)
+package.json
+frontend/package.json
 
 # === MISC ===
 # Editor directories and files
