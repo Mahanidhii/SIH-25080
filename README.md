@@ -4,7 +4,7 @@ The KMRL Synaptik Rail is a web-based document translator and summarizer designe
 
 ![KMRL Document Processing System](https://via.placeholder.com/800x400?text=KMRL+Synaptik+Rail)
 
-## 🚆 Features
+## Features
 
 - **Malayalam OCR Processing**: Extract text from Malayalam documents using Tesseract OCR
 - **Automatic Translation**: Convert Malayalam text to English using Google Translator
@@ -14,7 +14,7 @@ The KMRL Synaptik Rail is a web-based document translator and summarizer designe
 - **Real-time Status Updates**: Monitor document processing progress in real-time
 - **Responsive UI**: Modern, user-friendly interface built with React and Tailwind CSS
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Frontend
 - **React** with **TypeScript**
@@ -30,7 +30,7 @@ The KMRL Synaptik Rail is a web-based document translator and summarizer designe
 - **PyPDF2** for PDF processing
 - **Background task processing** for handling long-running operations
 
-## 📋 Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 - Node.js (v14+)
